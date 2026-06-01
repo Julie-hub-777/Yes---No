@@ -1,1 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Yes or No?</title>
+  <style>
+    :root{
+      --bg1:#ffd6e7;
+      --bg2:#c7f0ff;
+      --card: rgba(255,255,255,.75);
+      --text:#1f2a44;
+      --shadow: 0 14px 40px rgba(0,0,0,.12);
+      --yes:#2ecc71;
+      --no:#ff4757;
+      --btn:#ffffff;
+      --btnText:#1f2a44;
+    }
+    body{
+      margin:0;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background: radial-gradient(circle at 20% 20%, var(--bg1), transparent 45%),
+                  radial-gradient(circle at 80% 30%, var(--bg2), transparent 50%),
+                  linear-gradient(135deg, #fff7fb, #f2fbff);
+      padding:16px;
+    }
+    .card{
+      width:min(420px, 92vw);
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,.6);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      border-radius: 22px;
+      padding: 18px 18px 16px;
+      position:relative;
+      overflow:hidden;
+    }
+    .title{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      font-weight:800;
+      font-size:18px;
+    }
+    .sparkles{
+      width:34px;height:34px;border-radius:12px;
+      display:grid;place-items:center;
+      background: rgba(255,255,255,.65);
+      border: 1px solid rgba(0,0,0,.05);
+      transform: rotate(-6deg);
+    }
+    .prompt{
+      margin:12px 0 16px;
+      font-size:15px;
+      line-height:1.4;
+      opacity:.95;
+    }
+    .buttons{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+    }
+    button{
+      appearance:none;
+      border:none;
+      border-radius: 16px;
+      padding:14px 10px;
+      font-weight:800;
+      font-size:16px;
+      cursor:pointer;
+      background: var(--btn);
+      color: var(--btnText);
+      border: 1px solid rgba(0,0,0,.06);
+      box-shadow: 0 10px 24px rgba(0,0,0,.08);
+      transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
+      user-select:none;
+      position:relative;
+    }
+    button:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(0,0,0,.12);
+      filter: saturate(1.06);
+    }
+    button:active{
+      transform: translateY(0px) scale(.99);
+    }
+    .yes::before, .no::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius:16px;
+      background: radial-gradient(circle at 30% 20%, rgba(255,255,255,.9), transparent 45%);
+      pointer-events:none;
+    }
+    .yes{
+      border-color: rgba(46,204,113,.25);
+      outline: 3px solid rgba(46,204,113,.12);
+    }
+    .no{
+      border-color: rgba(255,71,87,.25);
+      outline: 3px solid rgba(255,71,87,.12);
+    }
+    .result{
+      margin-top:14px;
+      padding:12px 12px;
+      border-radius:16px;
+      border: 1px dashed rgba(0,0,0,.12);
+      background: rgba(255,255,255,.55);
+      min-height: 44px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:800;
+    }
+    .footer{
+      margin-top:10px;
+      font-size:12px;
+      opacity:.7;
+      text-align:center;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="title">
+      <div class="sparkles">✨</div>
+      <div>Do you mean “Yes” or “No”?</div>
+    </div>
 
+    <div class="prompt">
+      Tap a button—I'll display your choice right here. 💖
+    </div>
+
+    <div class="buttons">
+      <button class="yes" id="btnYes" aria-label="Yes">✅ Yes</button>
+      <button class="no" id="btnNo" aria-label="No">❌ No</button>
+    </div>
+
+    <div class="result" id="result">Your answer will show up here.</div>
+    <div class="footer">Cute little demo • local file friendly</div>
+  </div>
+
+  <script>
+    const resultEl = document.getElementById('result');
+    document.getElementById('btnYes').addEventListener('click', () => {
+      resultEl.textContent = "Yay! You picked YES! 🎉";
+    });
+    document.getElementById('btnNo').addEventListener('click', () => {
+      resultEl.textContent = "Aww! You picked NO. 🌸";
+    });
+  </script>
+</body>
+</html>
